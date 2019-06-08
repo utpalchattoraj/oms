@@ -23,6 +23,10 @@ ToDo
 2. Add a quickfixJ engine in the front to take a proper FIX message as an input.
 3. It is serving only 1 console client at the moment
 4. Exception handling
+5. Junits
+6. Recovery persisting the state of the OMS.
+7. Improve the fix message parsing logic, currently it assumes all messages start with message type tag 35
+
 
 Sample Output
 ==============
