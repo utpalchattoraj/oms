@@ -52,6 +52,7 @@ public class ConsoleClient extends Client{
                 Message m;
                  try {
                      m = (Message) ((BlockingQueue)_outQueue).take();
+                     System.out.println (m.toFixString());
                  } catch (InterruptedException e) {
                      e.printStackTrace();
                  }

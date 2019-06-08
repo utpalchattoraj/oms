@@ -14,6 +14,7 @@ public class Server {
 
     private ConfigManager _config;
     private Client _client;
+    private OrderManager _orderManager;
     private BlockingQueue<Message> _inQueue;
     private BlockingQueue<Message> _outQueue;
 
@@ -21,6 +22,9 @@ public class Server {
 
         // This is the configuration of the OMS which orders to accept which to reject
         _config = ConfigManager.INSTANCE;
+
+        // Validations and state management
+        _orderManager = OrderManager.INSTANCE;
 
         // Todo Use a factory method to get the type of client
         // For a ConsoleClient using a blocking queue;
@@ -41,14 +45,18 @@ public class Server {
         while (true) {
             try {
                 Message m = _inQueue.take();
+                Message outMessage = null;
                 switch (m.getMessageType()) {
                     case NewOrder:
-                        processNewOrder (m);
+                        outMessage = _orderManager.processMessage (m);
                         break;
                     case KillProcess:
                         System.out.println ("Shutting down");
                         System.exit(0);
                         break;
+                }
+                if (outMessage != null) {
+                    _outQueue.add (outMessage);
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -57,8 +65,5 @@ public class Server {
         }
     }
 
-    private void processNewOrder(Message m) {
-        NewOrderMessage newOrder = (NewOrderMessage) m;
-        System.out.println(newOrder.getSymbol());
-    }
+
 }

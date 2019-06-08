@@ -6,5 +6,7 @@ public enum MessageType {
         AmendOrder,
         CancelOrder,
         KillProcess,
-        Status
+        Status,
+        Accept,
+        Reject
 }

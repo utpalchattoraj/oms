@@ -6,12 +6,15 @@ import messages.MessageFactory;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
+/** This class helps to parse the incoming FIX messages from the client */
+
 public class Client {
 
     final String FIX_MESSAGE_TYPE_TOKEN = "35";
     final String FIX_SYMBOL_TOKEN = "55";
     final String FIX_PRICE_TOKEN = "44";
     final String FIX_SIDE_TOKEN  = "54";
+    final String FIX_CLORDID_TOKEN  = "11";
 
     protected Queue<Message> _inQueue;
     protected Queue<Message> _outQueue;
@@ -41,6 +44,9 @@ public class Client {
                     case FIX_SYMBOL_TOKEN:
                         m.setSymbol(tk3);
                         break;
+                    case FIX_CLORDID_TOKEN:
+                        m.setClOrdId(tk3);
+                        break;
                     default:
                         break;
                 }
@@ -49,6 +55,5 @@ public class Client {
     }
 
     public void start() {
-
     }
 }

@@ -14,4 +14,14 @@ public class KillProcessMessage implements Message{
     public void setSymbol(String symbol) {
         //Not implemented
     }
+
+    @Override
+    public String toFixString() {
+        return "35=K";
+    }
+
+    @Override
+    public void setClOrdId(String clientOrderId) {
+        //Not implemented
+    }
 }
