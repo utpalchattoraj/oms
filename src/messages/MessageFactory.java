@@ -26,4 +26,21 @@ public class MessageFactory {
         return null;
     }
 
+    public Message createRejectMessage(NewOrderMessage newOrder, String rejectReason) {
+        RejectMessage rej = new RejectMessage();
+        rej.setClOrdId(newOrder.getClOrdId());
+        rej.setSymbol(newOrder.getSymbol());
+        rej.setText(rejectReason);
+        return rej;
+    }
+
+    public Message createAcceptMessage(NewOrderMessage newOrder) {
+        AcceptMessage msg = new AcceptMessage();
+        msg.setClOrdId(newOrder.getClOrdId());
+        msg.setSymbol(newOrder.getSymbol());
+        msg.setPrice(newOrder.getPrice());
+        msg.setSide(newOrder.getSide());
+        msg.setOrderQty(newOrder.getOrderQty());
+        return msg;
+    }
 }

@@ -1,14 +1,11 @@
 package process;
 
 import config.ConfigManager;
-import messages.Message;
-import messages.NewOrderMessage;
-import messages.RejectMessage;
-import messages.Side;
+import messages.*;
 
-public class OrderManager {
+class OrderManager {
 
-    public static OrderManager INSTANCE = new OrderManager();
+    static OrderManager INSTANCE = new OrderManager();
 
     private OrderManager () {
     }
@@ -17,7 +14,7 @@ public class OrderManager {
         return INSTANCE;
     }
 
-    public Message processMessage(Message m) {
+    Message processMessage(Message m) {
 
         switch (m.getMessageType()) {
             case NewOrder:
@@ -31,13 +28,9 @@ public class OrderManager {
         NewOrderMessage newOrder = (NewOrderMessage) m;
         String rejectReason = validate (newOrder);
         if (rejectReason == null) {
-
+            message = MessageFactory.getInstance().createAcceptMessage( newOrder );
         } else {
-            RejectMessage rej = new RejectMessage();
-            message = rej;
-            rej.setClOrdId(newOrder.getClOrdId());
-            rej.setSymbol(newOrder.getSymbol());
-            rej.setText(rejectReason);
+            message = MessageFactory.getInstance().createRejectMessage( newOrder, rejectReason);
         }
         return message;
     }
@@ -48,6 +41,10 @@ public class OrderManager {
            return "Invalid instrument " + newOrder.getSymbol();
         }
 
+        if (newOrder.getClOrdId() == null) {
+            return "Missing mandatory Tag 11";
+        }
+
         //Check side only Buy and Sell, no specials like ShortSell
         Side side = newOrder.getSide();
         if (side == null) {
@@ -55,7 +52,6 @@ public class OrderManager {
         }
 
         long quantity = newOrder.getOrderQty();
-        System.out.println (quantity);
 
         if (quantity <= 0) {
             return "Invalid quantity " + quantity ;

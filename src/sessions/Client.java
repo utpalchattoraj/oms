@@ -60,6 +60,7 @@ public class Client {
                             default:
                                 m.setSide(null);
                         }
+                        break;
                     case FIX_QTY_TOKEN:
                         m.setOrderQty(Integer.parseInt(tk3));
                         break;
