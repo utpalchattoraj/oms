@@ -61,10 +61,10 @@ public class Client {
                                 m.setSide(null);
                         }
                     case FIX_QTY_TOKEN:
-                        m.setOrderQty(Integer.valueOf(tk3));
+                        m.setOrderQty(Integer.parseInt(tk3));
                         break;
                     case FIX_PRICE_TOKEN:
-                        m.setPrice(Double.valueOf(tk3));
+                        m.setPrice(Double.parseDouble(tk3));
                         break;
                     default:
                         break;

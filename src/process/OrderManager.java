@@ -1,5 +1,6 @@
 package process;
 
+import config.ConfigManager;
 import messages.Message;
 import messages.NewOrderMessage;
 import messages.RejectMessage;
@@ -43,6 +44,10 @@ public class OrderManager {
 
     private String validate(NewOrderMessage newOrder) {
 
+        if (!ConfigManager.getInstance().isValidInstrument( newOrder.getSymbol())) {
+           return "Invalid instrument " + newOrder.getSymbol();
+        }
+
         //Check side only Buy and Sell, no specials like ShortSell
         Side side = newOrder.getSide();
         if (side == null) {
@@ -50,8 +55,14 @@ public class OrderManager {
         }
 
         long quantity = newOrder.getOrderQty();
+        System.out.println (quantity);
+
+        if (quantity <= 0) {
+            return "Invalid quantity " + quantity ;
+        }
+
         // Lets assume lot size is 10
-        if (quantity % 10 != 0) {
+        if ((quantity % 10) != 0) {
             return "Lot size invalid should be multiple of 10";
         }
 
