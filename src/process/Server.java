@@ -14,7 +14,8 @@ public class Server {
 
     private ConfigManager _config;
     private Client _client;
-    private BlockingQueue<Message> _queue;
+    private BlockingQueue<Message> _inQueue;
+    private BlockingQueue<Message> _outQueue;
 
     public void init() {
 
@@ -23,8 +24,9 @@ public class Server {
 
         // Todo Use a factory method to get the type of client
         // For a ConsoleClient using a blocking queue;
-        _queue = new LinkedBlockingQueue();
-        _client = new ConsoleClient(_queue);
+        _inQueue = new LinkedBlockingQueue();
+        _outQueue = new LinkedBlockingQueue();
+        _client = new ConsoleClient(_inQueue, _outQueue);
     }
 
     public void start() {
@@ -38,7 +40,7 @@ public class Server {
     private void processMessages() {
         while (true) {
             try {
-                Message m = _queue.take();
+                Message m = _inQueue.take();
                 switch (m.getMessageType()) {
                     case NewOrder:
                         processNewOrder (m);
