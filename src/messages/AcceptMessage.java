@@ -4,6 +4,9 @@ public class AcceptMessage implements Message {
 
     private String _symbol;
     private String _clOrdId;
+    private Side _side;
+    private long _quantity;
+    private double _price;
 
     @Override
     public MessageType getMessageType() {
@@ -17,11 +20,26 @@ public class AcceptMessage implements Message {
 
     @Override
     public String toFixString() {
-        return "35=8; 150=0; 39=0; 55=" + _symbol + "; 11=" +_clOrdId + ";";
+        return "35=8; 150=0; 39=0; 55=" + _symbol + "; 11=" +_clOrdId + "; 38=" + _quantity + "; 44=" + _price + ";" ;
     }
 
     @Override
     public void setClOrdId(String clientOrderId) {
         _clOrdId = clientOrderId;
+    }
+
+    @Override
+    public void setOrderQty(long qty) {
+        _quantity = qty;
+    }
+
+    @Override
+    public void setPrice(double price) {
+        _price = price;
+    }
+
+    @Override
+    public void setSide(Side side) {
+        _side = side;
     }
 }

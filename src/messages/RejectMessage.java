@@ -26,6 +26,22 @@ public class RejectMessage implements Message {
         _clOrdId = clientOrderId;
     }
 
+    @Override
+    public void setOrderQty(long qty) {
+    //NA
+    }
+
+
+    @Override
+    public void setPrice(double price) {
+        //NA
+    }
+
+    @Override
+    public void setSide(Side buy) {
+
+    }
+
     public void setText(String text) {
         _text = text;
     }

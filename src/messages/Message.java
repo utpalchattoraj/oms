@@ -1,5 +1,7 @@
 package messages;
 
+import javafx.geometry.Side;
+
 public interface Message {
 
     MessageType getMessageType ();
@@ -10,4 +12,10 @@ public interface Message {
     String toFixString();
 
     void setClOrdId(String clientOrderId);
+
+    void setOrderQty(long qty);
+
+    void setPrice(double price);
+
+    void setSide(messages.Side buy);
 }

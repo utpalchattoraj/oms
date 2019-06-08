@@ -2,6 +2,7 @@ package sessions;
 
 import messages.Message;
 import messages.MessageFactory;
+import messages.Side;
 
 import java.util.Queue;
 import java.util.StringTokenizer;
@@ -13,6 +14,7 @@ public class Client {
     final String FIX_MESSAGE_TYPE_TOKEN = "35";
     final String FIX_SYMBOL_TOKEN = "55";
     final String FIX_PRICE_TOKEN = "44";
+    final String FIX_QTY_TOKEN = "38";
     final String FIX_SIDE_TOKEN  = "54";
     final String FIX_CLORDID_TOKEN  = "11";
 
@@ -46,6 +48,23 @@ public class Client {
                         break;
                     case FIX_CLORDID_TOKEN:
                         m.setClOrdId(tk3);
+                        break;
+                    case FIX_SIDE_TOKEN:
+                        switch (tk3) {
+                            case "1":
+                                m.setSide(Side.Buy);
+                                break;
+                            case "2":
+                                m.setSide(Side.Sell);
+                                break;
+                            default:
+                                m.setSide(null);
+                        }
+                    case FIX_QTY_TOKEN:
+                        m.setOrderQty(Integer.valueOf(tk3));
+                        break;
+                    case FIX_PRICE_TOKEN:
+                        m.setPrice(Double.valueOf(tk3));
                         break;
                     default:
                         break;

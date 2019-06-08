@@ -3,6 +3,7 @@ package process;
 import messages.Message;
 import messages.NewOrderMessage;
 import messages.RejectMessage;
+import messages.Side;
 
 public class OrderManager {
 
@@ -27,18 +28,33 @@ public class OrderManager {
     private Message processNewOrder(Message m) {
         Message message = null;
         NewOrderMessage newOrder = (NewOrderMessage) m;
-        if (validate (newOrder)) {
+        String rejectReason = validate (newOrder);
+        if (rejectReason == null) {
 
         } else {
             RejectMessage rej = new RejectMessage();
             message = rej;
             rej.setClOrdId(newOrder.getClOrdId());
             rej.setSymbol(newOrder.getSymbol());
+            rej.setText(rejectReason);
         }
         return message;
     }
 
-    private boolean validate(NewOrderMessage newOrder) {
-        return false;
+    private String validate(NewOrderMessage newOrder) {
+
+        //Check side only Buy and Sell, no specials like ShortSell
+        Side side = newOrder.getSide();
+        if (side == null) {
+            return "Invalid side";
+        }
+
+        long quantity = newOrder.getOrderQty();
+        // Lets assume lot size is 10
+        if (quantity % 10 != 0) {
+            return "Lot size invalid should be multiple of 10";
+        }
+
+        return null;
     }
 }

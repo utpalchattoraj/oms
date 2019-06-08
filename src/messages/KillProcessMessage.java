@@ -24,4 +24,19 @@ public class KillProcessMessage implements Message{
     public void setClOrdId(String clientOrderId) {
         //Not implemented
     }
+
+    @Override
+    public void setOrderQty(long qty) {
+
+    }
+
+    @Override
+    public void setPrice(double price) {
+
+    }
+
+    @Override
+    public void setSide(Side buy) {
+
+    }
 }
