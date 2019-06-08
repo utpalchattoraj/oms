@@ -7,8 +7,5 @@ public class Main {
         Server server = new Server();
         server.init();
         server.start();
-        while (true) {
-
-        }
     }
 }

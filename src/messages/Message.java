@@ -2,5 +2,7 @@ package messages;
 
 public interface Message {
 
-    String _text = null;
+    MessageType getMessageType ();
+
+    void setSymbol(String symbol);
 }

@@ -3,8 +3,8 @@ package sessions;
 import messages.Message;
 import messages.MessageFactory;
 
+import java.util.Queue;
 import java.util.StringTokenizer;
-import java.util.concurrent.BlockingQueue;
 
 public class Client extends Thread{
 
@@ -13,9 +13,9 @@ public class Client extends Thread{
     final String FIX_PRICE_TOKEN = "44";
     final String FIX_SIDE_TOKEN  = "54";
 
-    private BlockingQueue<Message> _queue;
+    private Queue<Message> _queue;
 
-    Client(BlockingQueue<Message> queue ) {
+    Client(Queue<Message> queue ) {
         _queue = queue;
     }
 
@@ -27,21 +27,24 @@ public class Client extends Thread{
 
         while (st.hasMoreElements()) {
             String token = st.nextElement().toString();
+
+            System.out.println (token);
             StringTokenizer st2 = new StringTokenizer(token, "=");
-            while (st2.hasMoreElements()) {
-                String tk2 = st2.nextElement().toString();
-                System.out.println ("FIRST " + tk2);
-                System.out.println ("second" + st2.nextToken());
+            String tk2 = st2.nextToken().trim();
+            String tk3 = st2.nextToken().trim();
+
                 switch (tk2) {
                     case FIX_MESSAGE_TYPE_TOKEN:
-                        m = MessageFactory.getInstance().createMessage(st2.nextElement().toString());
+                        m = MessageFactory.getInstance().createMessage(tk3);
+                        break;
+                    case FIX_SYMBOL_TOKEN:
+                        System.out.println ("setting symbol" + tk3);
+                        m.setSymbol(tk3);
                         break;
                     default:
-                    st2.nextElement();
+                        break;
                 }
-            }
-        }
-
+         }
         return m;
     }
 

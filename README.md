@@ -20,3 +20,4 @@ ToDo
 1. Make config read from config files could be from xml files.
 2. Add a quickfixJ engine in the front to take a proper FIX message as an input.
 3. It is serving only 1 console client at the moment
+4. Exception handling

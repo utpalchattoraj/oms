@@ -2,9 +2,8 @@ package sessions;
 
 import messages.Message;
 
+import java.util.Queue;
 import java.util.Scanner;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.ConcurrentLinkedQueue;
 
 /** This class reads the messages from console
  *  Messages are delimited by ';' character
@@ -15,7 +14,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class ConsoleClient extends Client{
 
-    public ConsoleClient(BlockingQueue<Message> queue ) {
+    public ConsoleClient(Queue<Message> queue ) {
         super (queue);
     }
 
