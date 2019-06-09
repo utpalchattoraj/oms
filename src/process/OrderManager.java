@@ -5,6 +5,7 @@ import config.ConfigManager;
 import messages.*;
 import order.Order;
 import order.OrderFactory;
+import order.State;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,10 +27,27 @@ class OrderManager {
         switch (m.getMessageType()) {
             case NewOrder:
                 return processNewOrder(m);
+            case CancelOrder:
+                return processCancelOrder(m);
             case Status:
                 return processOrderBookStatus();
         }
         return null;
+    }
+
+    private Message processCancelOrder(Message cancel) {
+        Message m = null;
+        CancelOrderMessage cancelMessage = (CancelOrderMessage) cancel;
+        Order order = _orders.get(cancelMessage.getOrigClOrdId());
+        if (order == null) {
+
+        }
+        else {
+            m = MessageFactory.getInstance().createCancelAcceptMessage( order );
+            order.setState(State.Cancelled);
+        }
+
+        return m;
     }
 
     private Message processOrderBookStatus() {

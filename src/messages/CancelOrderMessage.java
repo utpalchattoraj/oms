@@ -1,16 +1,18 @@
 package messages;
 
-public class AcceptMessage implements Message {
+public class CancelOrderMessage implements Message {
 
     private String _symbol;
     private String _clOrdId;
-    private Side _side;
+    private String _origClOrdId;
     private long _quantity;
     private double _price;
+    private Side _side;
+    private String _account;
 
     @Override
     public MessageType getMessageType() {
-        return MessageType.Accept;
+        return MessageType.CancelOrder;
     }
 
     @Override
@@ -20,22 +22,23 @@ public class AcceptMessage implements Message {
 
     @Override
     public String toFixString() {
-        return "35=8; 150=0; 39=0; 55=" + _symbol + "; 11=" +_clOrdId + "; 38=" + _quantity + "; 44=" + _price + ";" ;
+        return "35=F; 55=" + _symbol + ";";
     }
 
     @Override
     public void setClOrdId(String clientOrderId) {
-        _clOrdId = clientOrderId;
+       _clOrdId = clientOrderId;
     }
 
     @Override
     public void setOrigClOrdId(String clientOrderId) {
-
+        _origClOrdId = clientOrderId;
     }
 
     @Override
     public void setOrderQty(long qty) {
         _quantity = qty;
+
     }
 
     @Override
@@ -50,6 +53,34 @@ public class AcceptMessage implements Message {
 
     @Override
     public void setAccount(String account) {
+        _account = account;
+    }
 
+    public long getOrderQty() {
+        return _quantity;
+    }
+
+    public double getPrice() {
+        return _price;
+    }
+
+    public Side getSide() {
+        return _side;
+    }
+
+    public String getClOrdId() {
+        return _clOrdId;
+    }
+
+    public String getSymbol() {
+        return _symbol;
+    }
+
+    public String getAccount() {
+        return _account;
+    }
+
+    public String getOrigClOrdId() {
+        return _origClOrdId;
     }
 }

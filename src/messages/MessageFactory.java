@@ -1,5 +1,7 @@
 package messages;
 
+import order.Order;
+
 public class MessageFactory {
 
     private static MessageFactory INSTANCE = new MessageFactory();
@@ -19,6 +21,8 @@ public class MessageFactory {
         switch (messageType) {
             case FIX_NEW_ORDER:
                 return new NewOrderMessage();
+            case FIX_CANCEL_ORDER:
+                return new CancelOrderMessage();
             case KILL_PROCESS:
                 return new KillProcessMessage();
             case STATUS:
@@ -43,6 +47,12 @@ public class MessageFactory {
         msg.setPrice(newOrder.getPrice());
         msg.setSide(newOrder.getSide());
         msg.setOrderQty(newOrder.getOrderQty());
+        return msg;
+    }
+
+    public Message createCancelAcceptMessage(Order order) {
+        CancelAcceptMessage msg = new CancelAcceptMessage();
+        msg.setSymbol(order.getSymbol());
         return msg;
     }
 }

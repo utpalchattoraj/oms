@@ -13,6 +13,8 @@ public interface Message {
 
     void setClOrdId(String clientOrderId);
 
+    void setOrigClOrdId(String clientOrderId);
+
     void setOrderQty(long qty);
 
     void setPrice(double price);

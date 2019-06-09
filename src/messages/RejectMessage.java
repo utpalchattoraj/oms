@@ -27,6 +27,11 @@ public class RejectMessage implements Message {
     }
 
     @Override
+    public void setOrigClOrdId(String clientOrderId) {
+
+    }
+
+    @Override
     public void setOrderQty(long qty) {
     //NA
     }

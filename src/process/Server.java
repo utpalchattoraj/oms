@@ -48,10 +48,9 @@ public class Server {
                 Message outMessage = null;
                 switch (m.getMessageType()) {
                     case NewOrder:
-                        outMessage = _orderManager.processMessage (m);
-                        break;
+                    case CancelOrder:
                     case Status:
-                        outMessage = _orderManager.processMessage(m);
+                        outMessage = _orderManager.processMessage (m);
                         break;
                     case KillProcess:
                         System.out.println ("Shutting down");

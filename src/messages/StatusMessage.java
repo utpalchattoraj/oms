@@ -31,6 +31,11 @@ public class StatusMessage implements Message{
     }
 
     @Override
+    public void setOrigClOrdId(String clientOrderId) {
+
+    }
+
+    @Override
     public void setOrderQty(long qty) {
 
     }
