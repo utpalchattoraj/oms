@@ -14,7 +14,6 @@ Design Patterns
 Singleton
 MessageFactory to return types of Messages
 Flyweight - Integer.valueOf  when parsing the incoming fix messages as string token.
-Strategy pattern ? TODo lets try to use this with lambda for accept /reject list
 Client - Currently only implemnetation is a ConsoleClient which reads the input from console can be extended
  to FixSocketClient etc etc .
 
@@ -30,9 +29,16 @@ ToDo
 
 Sample Output
 ==============
-35=D; 55=STEL.SI; 11=A1; 38=1; 44=2.3;
-35=8; 150=8; 39=8; 55=STEL.SI; 11=A1; 58=Invalid side;
-35=D; 55=STEL.SI; 11=A2; 38=1; 44=2.3; 54=1;
-35=8; 150=8; 39=8; 55=STEL.SI; 11=A2; 58=Lot size invalid should be multiple of 10;
+35=D; 55=STEL.SI; 44=1; 11=AC; 1=A1; 54=1; 38=100;
+35=8; 150=0; 39=0; 55=STEL.SI; 11=AC; 38=100; 44=1.0;
+35=S;
+Symbol STEL.SI , Side Buy , Account A1 ,State Open
+Displaying status of 1 orders
+35=D; 55=STEL.SI; 44=2; 11=AC2; 1=AB; 54=2; 38=200;
+35=8; 150=0; 39=0; 55=STEL.SI; 11=AC2; 38=200; 44=2.0;
+35=S;
+Symbol STEL.SI , Side Sell , Account AB ,State Open
+Symbol STEL.SI , Side Buy , Account A1 ,State Open
+Displaying status of 2 orders
 35=K;
 Shutting down

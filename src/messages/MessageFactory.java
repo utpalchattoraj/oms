@@ -21,6 +21,8 @@ public class MessageFactory {
                 return new NewOrderMessage();
             case KILL_PROCESS:
                 return new KillProcessMessage();
+            case STATUS:
+                return new StatusMessage("GetStatus");
 
         }
         return null;

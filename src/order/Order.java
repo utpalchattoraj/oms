@@ -20,6 +20,12 @@ public class Order {
         _account = account;
     }
 
+    @Override
+    public String toString() {
+        return "Symbol " + _symbol + ", Side " + _side + ", Account " + _account
+                + ", State " + _state;
+    }
+
     public String getSymbol() {
         return _symbol;
     }

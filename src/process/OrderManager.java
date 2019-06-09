@@ -26,14 +26,25 @@ class OrderManager {
         switch (m.getMessageType()) {
             case NewOrder:
                 return processNewOrder(m);
+            case Status:
+                return processOrderBookStatus();
         }
         return null;
+    }
+
+    private Message processOrderBookStatus() {
+        int count = _orders.size();
+        for (Order order : _orders.values()) {
+            System.out.println (order);
+        }
+        StatusMessage m = new StatusMessage("Displaying status of " + count + " orders");
+        return m;
     }
 
     private Message processNewOrder(Message m) {
         Message message = null;
         NewOrderMessage newOrder = (NewOrderMessage) m;
-        String rejectReason = validate (newOrder);
+        String rejectReason = validateAndCreate (newOrder);
         if (rejectReason == null) {
             message = MessageFactory.getInstance().createAcceptMessage( newOrder );
         } else {
@@ -42,7 +53,7 @@ class OrderManager {
         return message;
     }
 
-    private String validate(NewOrderMessage newOrder) {
+    private String validateAndCreate(NewOrderMessage newOrder) {
 
         if (!ConfigManager.getInstance().isValidInstrument( newOrder.getSymbol())) {
            return "Invalid instrument " + newOrder.getSymbol();

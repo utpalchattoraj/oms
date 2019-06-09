@@ -50,6 +50,9 @@ public class Server {
                     case NewOrder:
                         outMessage = _orderManager.processMessage (m);
                         break;
+                    case Status:
+                        outMessage = _orderManager.processMessage(m);
+                        break;
                     case KillProcess:
                         System.out.println ("Shutting down");
                         System.exit(0);
