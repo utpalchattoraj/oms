@@ -7,6 +7,7 @@ public class NewOrderMessage implements Message {
     private long _quantity;
     private double _price;
     private messages.Side _side;
+    private String _account;
 
     @Override
     public MessageType getMessageType() {
@@ -44,6 +45,11 @@ public class NewOrderMessage implements Message {
         _side = side;
     }
 
+    @Override
+    public void setAccount(String account) {
+        _account = account;
+    }
+
     public long getOrderQty() {
         return _quantity;
     }
@@ -62,5 +68,9 @@ public class NewOrderMessage implements Message {
 
     public String getSymbol() {
         return _symbol;
+    }
+
+    public String getAccount() {
+        return _account;
     }
 }

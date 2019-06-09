@@ -39,4 +39,9 @@ public class KillProcessMessage implements Message{
     public void setSide(Side buy) {
 
     }
+
+    @Override
+    public void setAccount(String account) {
+
+    }
 }

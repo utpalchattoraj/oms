@@ -42,6 +42,11 @@ public class RejectMessage implements Message {
 
     }
 
+    @Override
+    public void setAccount(String account) {
+
+    }
+
     public void setText(String text) {
         _text = text;
     }

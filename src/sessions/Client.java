@@ -17,6 +17,7 @@ public class Client {
     final String FIX_QTY_TOKEN = "38";
     final String FIX_SIDE_TOKEN  = "54";
     final String FIX_CLORDID_TOKEN  = "11";
+    final String FIX_ACCOUNT_TOKEN  = "1";
 
     protected Queue<Message> _inQueue;
     protected Queue<Message> _outQueue;
@@ -48,6 +49,9 @@ public class Client {
                         break;
                     case FIX_CLORDID_TOKEN:
                         m.setClOrdId(tk3);
+                        break;
+                    case FIX_ACCOUNT_TOKEN:
+                        m.setAccount(tk3);
                         break;
                     case FIX_SIDE_TOKEN:
                         switch (tk3) {

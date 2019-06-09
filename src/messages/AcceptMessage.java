@@ -42,4 +42,9 @@ public class AcceptMessage implements Message {
     public void setSide(Side side) {
         _side = side;
     }
+
+    @Override
+    public void setAccount(String account) {
+
+    }
 }

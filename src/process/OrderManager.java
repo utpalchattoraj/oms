@@ -1,11 +1,18 @@
 package process;
 
+import com.sun.tools.corba.se.idl.constExpr.Or;
 import config.ConfigManager;
 import messages.*;
+import order.Order;
+import order.OrderFactory;
+
+import java.util.HashMap;
+import java.util.Map;
 
 class OrderManager {
 
     static OrderManager INSTANCE = new OrderManager();
+    static Map<String, Order> _orders = new HashMap<>();
 
     private OrderManager () {
     }
@@ -41,7 +48,8 @@ class OrderManager {
            return "Invalid instrument " + newOrder.getSymbol();
         }
 
-        if (newOrder.getClOrdId() == null) {
+        String clOrdId = newOrder.getClOrdId();
+        if (clOrdId == null) {
             return "Missing mandatory Tag 11";
         }
 
@@ -61,6 +69,12 @@ class OrderManager {
         if ((quantity % 10) != 0) {
             return "Lot size invalid should be multiple of 10";
         }
+
+        if (_orders.containsKey(clOrdId)) {
+           return "Duplicate clientOrderId Tag 11=" + clOrdId;
+        }
+        Order order = OrderFactory.createOrder(newOrder);
+        _orders.put(clOrdId, order);
 
         return null;
     }

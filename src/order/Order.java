@@ -9,17 +9,19 @@ public class Order {
     private double _price;
     private Side _side;
     private State _state;
+    private String _account;
 
-    Order() {
+    Order (String symbol, Side side, long quantity, double price, String account) {
+        _symbol = symbol;
+        _side = side;
+        _quantity = quantity;
+        _price = price;
+        _state = State.Open;
+        _account = account;
     }
-
 
     public String getSymbol() {
         return _symbol;
-    }
-
-    public void setSymbol(String symbol) {
-        _symbol = symbol;
     }
 
     public long getQuantity() {
@@ -34,16 +36,8 @@ public class Order {
         return _price;
     }
 
-    public void setPrice(double price) {
-        _price = price;
-    }
-
     public Side getSide() {
         return _side;
-    }
-
-    public void setSide(Side side) {
-        _side = side;
     }
 
     public State getState() {

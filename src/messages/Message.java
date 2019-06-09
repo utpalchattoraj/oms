@@ -18,4 +18,6 @@ public interface Message {
     void setPrice(double price);
 
     void setSide(messages.Side buy);
+
+    void setAccount(String account);
 }
