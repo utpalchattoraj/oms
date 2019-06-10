@@ -23,6 +23,8 @@ public class MessageFactory {
                 return new NewOrderMessage();
             case FIX_CANCEL_ORDER:
                 return new CancelOrderMessage();
+            case FIX_AMEND_ORDER:
+                return new AmendOrderMessage();
             case KILL_PROCESS:
                 return new KillProcessMessage();
             case STATUS:
@@ -52,6 +54,12 @@ public class MessageFactory {
 
     public Message createCancelAcceptMessage(Order order) {
         CancelAcceptMessage msg = new CancelAcceptMessage();
+        msg.setSymbol(order.getSymbol());
+        return msg;
+    }
+
+    public Message createAmendAcceptMessage(Order order) {
+        AmendAcceptMessage msg = new AmendAcceptMessage();
         msg.setSymbol(order.getSymbol());
         return msg;
     }

@@ -25,6 +25,7 @@ ToDo
 5. Junits
 6. Recovery persisting the state of the OMS.
 7. Improve the fix message parsing logic, currently it assumes all messages start with message type tag 35
+8. Capture details around amends, how much quantity or price was amended. basically keep track of all the transactions.
 
 
 Sample Input/Output

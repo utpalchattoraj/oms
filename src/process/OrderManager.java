@@ -29,10 +29,36 @@ class OrderManager {
                 return processNewOrder(m);
             case CancelOrder:
                 return processCancelOrder(m);
+            case AmendOrder:
+                return processAmendOrder(m);
             case Status:
                 return processOrderBookStatus();
         }
         return null;
+    }
+
+    private Message processAmendOrder(Message amend) {
+        Message m = null;
+        AmendOrderMessage amendMessage = (AmendOrderMessage) amend;
+        Order order = _orders.get(amendMessage.getOrigClOrdId());
+        if (order == null || order.isCompleted()) {
+            // If order not found or Order state is not for cancelling
+            CancelRejectMessage rejectMessage = new CancelRejectMessage();
+            rejectMessage.setText( order == null ? "Order not found" : "Order is already completed");
+            rejectMessage.setClOrdId(amendMessage.getClOrdId());
+            m = rejectMessage;
+        }
+        else {
+            AmendAcceptMessage msg = (AmendAcceptMessage) MessageFactory.getInstance().createAmendAcceptMessage( order );
+            order.setState(State.Amended);
+            msg.setClOrdId(amendMessage.getClOrdId());
+            msg.setOrigClOrdId(amendMessage.getOrigClOrdId());
+            m = msg;
+            // For Future amends/cancel to find the order to take action on
+            _orders.remove(amendMessage.getOrigClOrdId());
+            _orders.put(amendMessage.getClOrdId(), order);
+        }
+        return m;
     }
 
     private Message processCancelOrder(Message cancel) {

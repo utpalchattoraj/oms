@@ -49,6 +49,7 @@ public class Server {
                 switch (m.getMessageType()) {
                     case NewOrder:
                     case CancelOrder:
+                    case AmendOrder:
                     case Status:
                         outMessage = _orderManager.processMessage (m);
                         break;
