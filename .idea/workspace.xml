@@ -2,17 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="66f22f77-733f-4f33-a2a2-4bd682a65e26" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/messages/AcceptMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/messages/AcceptMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/messages/KillProcessMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/messages/KillProcessMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/messages/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/messages/Message.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/messages/MessageFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/messages/MessageFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/messages/NewOrderMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/messages/NewOrderMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/messages/RejectMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/messages/RejectMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/messages/StatusMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/messages/StatusMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/order/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/order/Order.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/process/OrderManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/process/OrderManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/process/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/process/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sessions/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sessions/Client.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,11 +18,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sessions/Client.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/process/OrderManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-24">
-              <caret line="53" column="47" selection-start-line="53" selection-start-column="47" selection-end-line="53" selection-end-column="47" />
+            <state relative-caret-position="435">
+              <caret line="65" column="30" selection-start-line="65" selection-start-column="30" selection-end-line="65" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -39,14 +30,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/process/OrderManager.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/order/Order.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="37" column="20" selection-start-line="37" selection-start-column="20" selection-end-line="37" selection-end-column="20" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="363">
+              <caret line="59" column="20" selection-start-line="59" selection-start-column="20" selection-end-line="59" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/order/State.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -56,18 +53,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="365">
               <caret line="55" column="18" selection-start-line="55" selection-start-column="18" selection-end-line="55" selection-end-column="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/process/Server.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="52" column="55" lean-forward="true" selection-start-line="52" selection-start-column="55" selection-end-line="52" selection-end-column="55" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -84,7 +69,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/messages/CancelAcceptMessage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="98">
+            <state relative-caret-position="225">
               <caret line="19" column="3" lean-forward="true" selection-start-line="19" selection-start-column="3" selection-end-line="19" selection-end-column="3" />
               <folding>
                 <element signature="e#429#430#0" expanded="true" />
@@ -103,15 +88,13 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/messages/StatusMessage.java">
+        <entry file="file://$PROJECT_DIR$/src/messages/CancelRejectMessage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="20">
-              <caret line="34" column="8" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="8" />
+            <state relative-caret-position="45">
+              <caret line="5" column="27" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
               <folding>
-                <element signature="e#214#215#0" expanded="true" />
-                <element signature="e#238#239#0" expanded="true" />
-                <element signature="e#475#476#0" expanded="true" />
-                <element signature="e#503#504#0" expanded="true" />
+                <element signature="e#392#393#0" expanded="true" />
+                <element signature="e#490#491#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -197,7 +180,6 @@
         <option value="$PROJECT_DIR$/src/config/ConfigManager.java" />
         <option value="$PROJECT_DIR$/src/order/State.java" />
         <option value="$PROJECT_DIR$/src/order/OrderFactory.java" />
-        <option value="$PROJECT_DIR$/src/order/Order.java" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/messages/Message.java" />
         <option value="$PROJECT_DIR$/src/messages/NewOrderMessage.java" />
@@ -210,6 +192,8 @@
         <option value="$PROJECT_DIR$/src/messages/CancelOrderMessage.java" />
         <option value="$PROJECT_DIR$/src/messages/MessageFactory.java" />
         <option value="$PROJECT_DIR$/src/messages/CancelAcceptMessage.java" />
+        <option value="$PROJECT_DIR$/src/order/Order.java" />
+        <option value="$PROJECT_DIR$/src/messages/CancelRejectMessage.java" />
         <option value="$PROJECT_DIR$/src/process/OrderManager.java" />
       </list>
     </option>
@@ -419,36 +403,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/order/State.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/order/Order.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="25" column="20" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
-          <folding>
-            <element signature="e#515#516#0" expanded="true" />
-            <element signature="e#545#546#0" expanded="true" />
-            <element signature="e#578#579#0" expanded="true" />
-            <element signature="e#610#611#0" expanded="true" />
-            <element signature="e#656#657#0" expanded="true" />
-            <element signature="e#692#693#0" expanded="true" />
-            <element signature="e#724#725#0" expanded="true" />
-            <element signature="e#753#754#0" expanded="true" />
-            <element signature="e#782#783#0" expanded="true" />
-            <element signature="e#810#811#0" expanded="true" />
-            <element signature="e#841#842#0" expanded="true" />
-            <element signature="e#870#871#0" expanded="true" />
-            <element signature="e#911#912#0" expanded="true" />
-            <element signature="e#941#942#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="177">
@@ -516,17 +470,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/messages/RejectMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="30" selection-start-line="30" selection-end-line="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/messages/StatusMessage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="20">
-          <caret line="34" column="8" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="8" />
+          <caret line="34" selection-start-line="34" selection-end-line="34" />
           <folding>
             <element signature="e#214#215#0" expanded="true" />
             <element signature="e#238#239#0" expanded="true" />
@@ -614,9 +561,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/order/State.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/order/Order.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="363">
+          <caret line="59" column="20" selection-start-line="59" selection-start-column="20" selection-end-line="59" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/messages/CancelAcceptMessage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
+        <state relative-caret-position="225">
           <caret line="19" column="3" lean-forward="true" selection-start-line="19" selection-start-column="3" selection-end-line="19" selection-end-column="3" />
           <folding>
             <element signature="e#429#430#0" expanded="true" />
@@ -624,10 +585,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/messages/RejectMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/messages/CancelRejectMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="5" column="27" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
+          <folding>
+            <element signature="e#392#393#0" expanded="true" />
+            <element signature="e#490#491#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/process/OrderManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="37" column="20" selection-start-line="37" selection-start-column="20" selection-end-line="37" selection-end-column="20" />
+        <state relative-caret-position="435">
+          <caret line="65" column="30" selection-start-line="65" selection-start-column="30" selection-end-line="65" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

@@ -53,4 +53,13 @@ public class Order {
     public void setState(State state) {
         _state = state;
     }
+
+    public boolean isCompleted() {
+        switch (_state) {
+            case Cancelled:
+            case FullFilled:
+                return true;
+        }
+        return false;
+    }
 }

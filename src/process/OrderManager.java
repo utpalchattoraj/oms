@@ -39,14 +39,17 @@ class OrderManager {
         Message m = null;
         CancelOrderMessage cancelMessage = (CancelOrderMessage) cancel;
         Order order = _orders.get(cancelMessage.getOrigClOrdId());
-        if (order == null) {
-
+        if (order == null || order.isCompleted()) {
+            // If order not found or Order state is not for cancelling
+            CancelRejectMessage rejectMessage = new CancelRejectMessage();
+            rejectMessage.setText( order == null ? "Order not found" : "Order is already completed");
+            rejectMessage.setClOrdId(cancelMessage.getClOrdId());
+            m = rejectMessage;
         }
         else {
             m = MessageFactory.getInstance().createCancelAcceptMessage( order );
             order.setState(State.Cancelled);
         }
-
         return m;
     }
 
