@@ -2,7 +2,9 @@ package process;
 
 import config.ConfigManager;
 import messages.Message;
+import messages.MessageType;
 import messages.NewOrderMessage;
+import messages.TradeMessage;
 import sessions.Client;
 import sessions.ConsoleClient;
 
@@ -61,6 +63,7 @@ public class Server {
                 if (outMessage != null) {
                     _outQueue.add (outMessage);
                 }
+                postProcess(m);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -68,5 +71,15 @@ public class Server {
         }
     }
 
-
+    // This should ideally be coming from a matching engine, doing it based on configuration which instrument
+    // has trades generated immediately after a New order gets accepted
+    private void postProcess(Message m) {
+        if (m.getMessageType() == MessageType.NewOrder) {
+            NewOrderMessage msg = (NewOrderMessage) m;
+            if (ConfigManager.getInstance().isLiquidInstrument(msg.getSymbol())) {
+                TradeMessage trade = _orderManager.processTrade (msg);
+                _outQueue.add(trade);
+            }
+        }
+    }
 }

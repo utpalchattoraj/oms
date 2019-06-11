@@ -139,4 +139,16 @@ class OrderManager {
 
         return null;
     }
+
+    public TradeMessage processTrade(NewOrderMessage msg) {
+        TradeMessage m = new TradeMessage();
+        m.setClOrdId(msg.getClOrdId());
+        m.setOrderQty(msg.getOrderQty());
+        m.setSymbol(msg.getSymbol());
+        Order order = _orders.get(msg.getClOrdId());
+        order.setOpenQuantity(0);
+        order.setExecQuantity(msg.getOrderQty());
+        order.setState(State.FullFilled);
+        return m;
+    }
 }

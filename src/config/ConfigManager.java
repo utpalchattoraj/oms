@@ -31,4 +31,8 @@ public class ConfigManager {
     public boolean isValidInstrument (String symbol) {
         return _instruments.contains(symbol);
     }
+
+    public boolean isLiquidInstrument (String symbol) {
+        return _trades.contains(symbol);
+    }
 }
