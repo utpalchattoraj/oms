@@ -10,6 +10,8 @@ public class Order {
     private Side _side;
     private State _state;
     private String _account;
+    private long _openQuantity;
+    private long _execQuantity;
 
     Order (String symbol, Side side, long quantity, double price, String account) {
         _symbol = symbol;
@@ -18,12 +20,15 @@ public class Order {
         _price = price;
         _state = State.Open;
         _account = account;
+        _openQuantity = _quantity;
+        _execQuantity = 0;
     }
 
     @Override
     public String toString() {
         return "Symbol " + _symbol + ", Side " + _side + ", Account " + _account
-                + ", State " + _state;
+                + ", State " + _state + ", Orig Qty " + _quantity + ", Open Qty " + _openQuantity
+                + ", Exec Qty " + _execQuantity;
     }
 
     public String getSymbol() {
@@ -36,6 +41,14 @@ public class Order {
 
     public void setQuantity(long quantity) {
         _quantity = quantity;
+    }
+
+    public void setOpenQuantity(long quantity) {
+        _openQuantity = quantity;
+    }
+
+    public void setExecQuantity(long quantity) {
+        _execQuantity = quantity;
     }
 
     public double getPrice() {

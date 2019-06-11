@@ -51,6 +51,7 @@ class OrderManager {
         else {
             AmendAcceptMessage msg = (AmendAcceptMessage) MessageFactory.getInstance().createAmendAcceptMessage( order );
             order.setState(State.Amended);
+            order.setOpenQuantity( amendMessage.getOrderQty());
             msg.setClOrdId(amendMessage.getClOrdId());
             msg.setOrigClOrdId(amendMessage.getOrigClOrdId());
             m = msg;
@@ -75,6 +76,7 @@ class OrderManager {
         else {
             m = MessageFactory.getInstance().createCancelAcceptMessage( order );
             order.setState(State.Cancelled);
+            order.setOpenQuantity(0);
         }
         return m;
     }
