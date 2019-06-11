@@ -28,7 +28,7 @@ public class Order {
     public String toString() {
         return "Symbol " + _symbol + ", Side " + _side + ", Account " + _account
                 + ", State " + _state + ", Orig Qty " + _quantity + ", Open Qty " + _openQuantity
-                + ", Exec Qty " + _execQuantity;
+                + ", Exec Qty " + _execQuantity + ", Price " + _price;
     }
 
     public String getSymbol() {
@@ -41,6 +41,10 @@ public class Order {
 
     public void setQuantity(long quantity) {
         _quantity = quantity;
+    }
+
+    public void setPrice (double price) {
+        _price = price;
     }
 
     public void setOpenQuantity(long quantity) {

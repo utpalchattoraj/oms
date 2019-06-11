@@ -52,6 +52,7 @@ class OrderManager {
             AmendAcceptMessage msg = (AmendAcceptMessage) MessageFactory.getInstance().createAmendAcceptMessage( order );
             order.setState(State.Amended);
             order.setOpenQuantity( amendMessage.getOrderQty());
+            order.setPrice(amendMessage .getPrice());
             msg.setClOrdId(amendMessage.getClOrdId());
             msg.setOrigClOrdId(amendMessage.getOrigClOrdId());
             m = msg;

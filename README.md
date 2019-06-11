@@ -30,16 +30,22 @@ ToDo
 
 Sample Input/Output
 ==============
-35=D; 55=STEL.SI; 44=1; 11=AC; 1=A1; 54=1; 38=100;
-35=8; 150=0; 39=0; 55=STEL.SI; 11=AC; 38=100; 44=1.0;
+35=D; 11=A1; 1=ABC; 54=1; 55=STEL.SI; 38=300; 44=1;
+35=8; 150=0; 39=0; 55=STEL.SI; 11=A1; 38=300; 44=1.0;
 35=S;
-Symbol STEL.SI , Side Buy , Account A1 ,State Open
+Symbol STEL.SI, Side Buy, Account ABC, State Open, Orig Qty 300, Open Qty 300, Exec Qty 0, Price 1.0
 Displaying status of 1 orders
-35=D; 55=STEL.SI; 44=2; 11=AC2; 1=AB; 54=2; 38=200;
-35=8; 150=0; 39=0; 55=STEL.SI; 11=AC2; 38=200; 44=2.0;
+35=G; 11=A2; 41=A1; 38=100; 44=2.0;
+35=8; 150=5; 39=5; 11=A2; 41=A1; 55=STEL.SI;
 35=S;
-Symbol STEL.SI , Side Sell , Account AB ,State Open
-Symbol STEL.SI , Side Buy , Account A1 ,State Open
-Displaying status of 2 orders
-35=K;
+Symbol STEL.SI, Side Buy, Account ABC, State Amended, Orig Qty 300, Open Qty 100, Exec Qty 0, Price 2.0
+Displaying status of 1 orders
+35=F; 11=A3; 41=A2;
+35=8; 150=4; 39=4; 55=STEL.SI;
+35=S;
+Symbol STEL.SI, Side Buy, Account ABC, State Cancelled, Orig Qty 300, Open Qty 0, Exec Qty 0, Price 2.0
+Displaying status of 1 orders
+35=K
 Shutting down
+
+
