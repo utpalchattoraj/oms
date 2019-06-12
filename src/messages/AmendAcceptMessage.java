@@ -8,7 +8,7 @@ public class AmendAcceptMessage implements Message {
 
     @Override
     public MessageType getMessageType() {
-        return MessageType.Accept;
+        return MessageType.AmendAccept;
     }
 
     @Override

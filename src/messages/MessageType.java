@@ -8,6 +8,9 @@ public enum MessageType {
         KillProcess,
         Status,
         Accept,
+        CancelAccept,
+        AmendAccept,
         Reject,
+        CancelReject,
         Trade
 }

@@ -8,7 +8,7 @@ public class CancelRejectMessage implements Message {
 
     @Override
     public MessageType getMessageType() {
-        return MessageType.Reject;
+        return MessageType.CancelReject;
     }
 
     @Override
@@ -54,5 +54,9 @@ public class CancelRejectMessage implements Message {
 
     public void setText(String text) {
         _text = text;
+    }
+
+    public String getText() {
+        return _text;
     }
 }

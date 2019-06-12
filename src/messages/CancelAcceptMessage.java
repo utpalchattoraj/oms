@@ -7,7 +7,7 @@ public class CancelAcceptMessage implements Message {
 
     @Override
     public MessageType getMessageType() {
-        return MessageType.Accept;
+        return MessageType.CancelAccept;
     }
 
     @Override
