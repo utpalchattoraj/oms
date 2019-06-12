@@ -10,7 +10,7 @@ import order.State;
 import java.util.HashMap;
 import java.util.Map;
 
-class OrderManager {
+public class OrderManager {
 
     static OrderManager INSTANCE = new OrderManager();
     static Map<String, Order> _orders = new HashMap<>();
@@ -18,11 +18,11 @@ class OrderManager {
     private OrderManager () {
     }
 
-    OrderManager getInstance() {
+    public static OrderManager getInstance() {
         return INSTANCE;
     }
 
-    Message processMessage(Message m) {
+    public Message processMessage(Message m) {
 
         switch (m.getMessageType()) {
             case NewOrder:
@@ -150,5 +150,10 @@ class OrderManager {
         order.setExecQuantity(msg.getOrderQty());
         order.setState(State.FullFilled);
         return m;
+    }
+
+    //For Junit tests
+    public void clear() {
+        _orders.clear();;
     }
 }

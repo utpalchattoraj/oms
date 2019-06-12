@@ -8,6 +8,7 @@ Components
    Example 35=D; 55=STEL.SI;
 4. Messsages - All type of messages handled , client messages like neworder, amend , cancel,
    A poison pill messsage to shutdown the server, a status message to dump the current state of order manager to console.
+5. test - OrderManagerTest based on Junit5
 
 
 Design Patterns
@@ -21,8 +22,8 @@ ToDo
 1. Make config read from config files could be from xml files.
 2. Add a quickfixJ engine in the front to take a proper FIX message as an input.
 3. It is serving only 1 console client at the moment
-4. Exception handling
-5. Junits
+4. Better Exception handling
+5. More Junits
 6. Recovery persisting the state of the OMS.
 7. Improve the fix message parsing logic, currently it assumes all messages start with message type tag 35
 8. Capture details around amends, how much quantity or price was amended. basically keep track of all the transactions.

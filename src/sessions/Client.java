@@ -23,14 +23,18 @@ public class Client {
     protected Queue<Message> _inQueue;
     protected Queue<Message> _outQueue;
 
-    Client(Queue<Message> inQueue , Queue<Message> outQueue) {
+    public Client(Queue<Message> inQueue, Queue<Message> outQueue) {
         _inQueue = inQueue;
         _outQueue = outQueue;
     }
 
+    public Client() {
+        // For Junit test
+    }
+
     // Assumption the input is delimited by ';' character to break down the message
     // Assumption first token is always the message type
-    Message parse (String input) {
+    public Message parse (String input) {
         Message m = null;
         StringTokenizer st = new StringTokenizer(input, ";");
 
