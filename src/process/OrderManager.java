@@ -50,7 +50,7 @@ public class OrderManager {
         }
         else {
             AmendAcceptMessage msg = (AmendAcceptMessage) MessageFactory.getInstance().createAmendAcceptMessage( order );
-            order.setState(State.Amended);
+            order.setState(State.next(order.getState(), msg));
             order.setOpenQuantity( amendMessage.getOrderQty());
             order.setPrice(amendMessage .getPrice());
             msg.setClOrdId(amendMessage.getClOrdId());
@@ -76,7 +76,7 @@ public class OrderManager {
         }
         else {
             m = MessageFactory.getInstance().createCancelAcceptMessage( order );
-            order.setState(State.Cancelled);
+            order.setState(State.next(order.getState(), m));
             order.setOpenQuantity(0);
         }
         return m;
@@ -150,7 +150,7 @@ public class OrderManager {
         Order order = _orders.get(msg.getClOrdId());
         order.setOpenQuantity(0);
         order.setExecQuantity(msg.getOrderQty());
-        order.setState(State.FFill);
+        order.setState(State.next(order.getState(), m));
     }
 
     void processEngineMessage(Message msg) {

@@ -62,8 +62,8 @@ public class Server {
                 }
                 if (outMessage != null) {
                     _outQueue.add (outMessage);
+                    postProcess(m);
                 }
-                postProcess(m);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
