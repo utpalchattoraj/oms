@@ -150,7 +150,7 @@ public class OrderManager {
         Order order = _orders.get(msg.getClOrdId());
         order.setOpenQuantity(0);
         order.setExecQuantity(msg.getOrderQty());
-        order.setState(State.FullFilled);
+        order.setState(State.FFill);
     }
 
     void processEngineMessage(Message msg) {

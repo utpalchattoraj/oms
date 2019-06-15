@@ -2,9 +2,6 @@ package process;
 
 import config.ConfigManager;
 import messages.Message;
-import messages.MessageType;
-import messages.NewOrderMessage;
-import messages.TradeMessage;
 import sessions.Client;
 import sessions.ConsoleClient;
 

@@ -5,8 +5,6 @@ import messages.Message;
 import messages.MessageType;
 import messages.NewOrderMessage;
 import messages.TradeMessage;
-import order.Order;
-import order.State;
 
 public class Simulator implements Engine {
     private static Simulator ourInstance = new Simulator();
