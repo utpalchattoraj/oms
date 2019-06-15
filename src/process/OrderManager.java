@@ -140,20 +140,26 @@ public class OrderManager {
         return null;
     }
 
-    public TradeMessage processTrade(NewOrderMessage msg) {
-        TradeMessage m = new TradeMessage();
-        m.setClOrdId(msg.getClOrdId());
-        m.setOrderQty(msg.getOrderQty());
-        m.setSymbol(msg.getSymbol());
+    //For Junit tests
+    public void clear() {
+        _orders.clear();;
+    }
+
+    private void processTrade(Message m) {
+        TradeMessage msg = (TradeMessage) m;
         Order order = _orders.get(msg.getClOrdId());
         order.setOpenQuantity(0);
         order.setExecQuantity(msg.getOrderQty());
         order.setState(State.FullFilled);
-        return m;
     }
 
-    //For Junit tests
-    public void clear() {
-        _orders.clear();;
+    void processEngineMessage(Message msg) {
+        switch (msg.getMessageType()) {
+            case Trade:
+                processTrade(msg);
+                break;
+            case Expired:
+               break;
+        }
     }
 }

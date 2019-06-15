@@ -19,6 +19,7 @@ public class Server {
     private OrderManager _orderManager;
     private BlockingQueue<Message> _inQueue;
     private BlockingQueue<Message> _outQueue;
+    private Engine _engine;
 
     public void init() {
 
@@ -27,6 +28,8 @@ public class Server {
 
         // Validations and state management
         _orderManager = OrderManager.INSTANCE;
+
+        _engine = Simulator.getInstance();
 
         // Todo Use a factory method to get the type of client
         // For a ConsoleClient using a blocking queue;
@@ -71,15 +74,11 @@ public class Server {
         }
     }
 
-    // This should ideally be coming from a matching engine, doing it based on configuration which instrument
-    // has trades generated immediately after a New order gets accepted
     private void postProcess(Message m) {
-        if (m.getMessageType() == MessageType.NewOrder) {
-            NewOrderMessage msg = (NewOrderMessage) m;
-            if (ConfigManager.getInstance().isLiquidInstrument(msg.getSymbol())) {
-                TradeMessage trade = _orderManager.processTrade (msg);
-                _outQueue.add(trade);
-            }
+        Message msg = _engine.processMessage(m);
+        if (msg != null) {
+            _orderManager.processEngineMessage(msg);
+            _outQueue.add(msg);
         }
     }
 }

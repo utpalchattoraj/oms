@@ -1,6 +1,5 @@
 package messages;
 
-import javafx.geometry.Side;
 
 public interface Message {
 

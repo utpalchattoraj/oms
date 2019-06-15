@@ -52,4 +52,12 @@ public class TradeMessage implements Message {
     public void setAccount(String account) {
 
     }
+
+    public String getClOrdId() {
+        return _clOrdId;
+    }
+
+    public long getOrderQty() {
+        return _quantity;
+    }
 }

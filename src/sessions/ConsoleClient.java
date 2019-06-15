@@ -38,6 +38,7 @@ public class ConsoleClient extends Client{
             Scanner in = new Scanner(System.in);
             while (true) {
                 Message m = parse (in.nextLine());
+                //persists
                 _inQueue.add(m);
             }
         }

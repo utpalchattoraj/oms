@@ -12,5 +12,6 @@ public enum MessageType {
         AmendAccept,
         Reject,
         CancelReject,
-        Trade
+        Trade,
+        Expired
 }
