@@ -1,11 +1,11 @@
 package process;
 
-import com.sun.tools.corba.se.idl.constExpr.Or;
 import config.ConfigManager;
 import messages.*;
 import order.Order;
 import order.OrderFactory;
 import order.State;
+import order.State.StateException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,7 +13,7 @@ import java.util.Map;
 public class OrderManager {
 
     static OrderManager INSTANCE = new OrderManager();
-    static Map<String, Order> _orders = new HashMap<>();
+    private static Map<String, Order> _orders = new HashMap<>();
 
     private OrderManager () {
     }
@@ -41,24 +41,31 @@ public class OrderManager {
         Message m = null;
         AmendOrderMessage amendMessage = (AmendOrderMessage) amend;
         Order order = _orders.get(amendMessage.getOrigClOrdId());
-        if (order == null || order.isCompleted()) {
+        if (order == null ) {
             // If order not found or Order state is not for cancelling
             CancelRejectMessage rejectMessage = new CancelRejectMessage();
-            rejectMessage.setText( order == null ? "Order not found" : "Order is already completed");
+            rejectMessage.setText( "Order not found" );
             rejectMessage.setClOrdId(amendMessage.getClOrdId());
             m = rejectMessage;
         }
         else {
-            AmendAcceptMessage msg = (AmendAcceptMessage) MessageFactory.getInstance().createAmendAcceptMessage( order );
-            order.setState(State.next(order.getState(), msg));
-            order.setOpenQuantity( amendMessage.getOrderQty());
-            order.setPrice(amendMessage .getPrice());
-            msg.setClOrdId(amendMessage.getClOrdId());
-            msg.setOrigClOrdId(amendMessage.getOrigClOrdId());
-            m = msg;
-            // For Future amends/cancel to find the order to take action on
-            _orders.remove(amendMessage.getOrigClOrdId());
-            _orders.put(amendMessage.getClOrdId(), order);
+            try {
+                order.setState(State.next(order.getState(), amendMessage));
+                AmendAcceptMessage msg = (AmendAcceptMessage) MessageFactory.getInstance().createAmendAcceptMessage( order );
+                order.setOpenQuantity( amendMessage.getOrderQty());
+                order.setPrice(amendMessage .getPrice());
+                msg.setClOrdId(amendMessage.getClOrdId());
+                msg.setOrigClOrdId(amendMessage.getOrigClOrdId());
+                m = msg;
+                // For Future amends/cancel to find the order to take action on
+                _orders.remove(amendMessage.getOrigClOrdId());
+                _orders.put(amendMessage.getClOrdId(), order);
+            } catch (StateException e) {
+                CancelRejectMessage rejectMessage = new CancelRejectMessage();
+                rejectMessage.setText( e.getReason() );
+                rejectMessage.setClOrdId(amendMessage.getClOrdId());
+                m = rejectMessage;
+            }
         }
         return m;
     }
@@ -67,17 +74,23 @@ public class OrderManager {
         Message m = null;
         CancelOrderMessage cancelMessage = (CancelOrderMessage) cancel;
         Order order = _orders.get(cancelMessage.getOrigClOrdId());
-        if (order == null || order.isCompleted()) {
-            // If order not found or Order state is not for cancelling
-            CancelRejectMessage rejectMessage = new CancelRejectMessage();
-            rejectMessage.setText( order == null ? "Order not found" : "Order is already completed");
-            rejectMessage.setClOrdId(cancelMessage.getClOrdId());
-            m = rejectMessage;
+        if (order != null) {
+            try {
+                order.setState(State.next(order.getState(), cancelMessage));
+                m = MessageFactory.getInstance().createCancelAcceptMessage( order );
+                order.setOpenQuantity(0);
+            } catch (StateException e) {
+                CancelRejectMessage rejectMessage = new CancelRejectMessage();
+                rejectMessage.setText( e.getReason() );
+                rejectMessage.setClOrdId(cancelMessage.getClOrdId());
+                m = rejectMessage;
+            }
         }
         else {
-            m = MessageFactory.getInstance().createCancelAcceptMessage( order );
-            order.setState(State.next(order.getState(), m));
-            order.setOpenQuantity(0);
+            CancelRejectMessage rejectMessage = new CancelRejectMessage();
+            rejectMessage.setText( "Order not found" );
+            rejectMessage.setClOrdId(cancelMessage.getClOrdId());
+            m = rejectMessage;
         }
         return m;
     }
@@ -148,9 +161,13 @@ public class OrderManager {
     private void processTrade(Message m) {
         TradeMessage msg = (TradeMessage) m;
         Order order = _orders.get(msg.getClOrdId());
-        order.setOpenQuantity(0);
-        order.setExecQuantity(msg.getOrderQty());
-        order.setState(State.next(order.getState(), m));
+        try {
+            order.setState(State.next(order.getState(), m));
+            order.setOpenQuantity(0);
+            order.setExecQuantity(msg.getOrderQty());
+        } catch (StateException e) {
+            e.printStackTrace();
+        }
     }
 
     void processEngineMessage(Message msg) {
